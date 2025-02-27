@@ -1,0 +1,385 @@
+@font-face {
+    font-family: inconsolata;
+    src: url("./assets/fonts/inconsoVar.ttf")
+  }
+  
+  * {
+    font-family: inconsolata;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --neutral-0: hsl(0, 0%, 100%);
+    --neutral-300: hsl(252, 6%, 83%);
+    --neutral-500: hsl(245, 15%, 58%);
+    --neutral-700: hsl(245, 19%, 35%);
+    --neutral-900: hsl(248, 70%, 10%);
+  
+    --orange-500: hsl(7, 88%, 67%);
+    --orange-700: hsl(7, 71%, 60%);
+  }
+  
+  body {
+    background: url("./assets/images/background-desktop.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+  }
+  
+  .bg-element {
+    display: block;
+    position: absolute;
+    max-width: 100%;
+    z-index: -1;
+  }
+  
+  .squiggly-lb {
+    left: 0%;
+    bottom: -50%;
+  }
+  
+  .squiggly-lt {
+    right: 0%;
+    top: 10%;
+  }
+  
+  .circle {
+    right: 25%;
+    top: 60%;
+  }
+  
+  #logo-full {
+    display: block;
+    margin: 1rem auto 2.5rem;
+  }
+  
+  .header {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  p.second {
+    margin: 0 auto;
+    width: fit-content;
+  }
+  
+  .main {
+    font-size: 2.5em;
+    font-weight: 800;
+    color: var(--neutral-0);
+    width: 50%;
+    margin-bottom: 1.15rem;
+  }
+  
+  .sub {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: var(--neutral-300);
+  }
+  
+  .form {
+    width: 25rem;
+    margin: 2.5rem auto; 
+  }
+  
+  label {
+    display: block;
+    color: var(--neutral-0);
+    font-size: 1.25em;
+    margin-bottom: 0.5rem;
+    margin-top: 1.25rem;
+  }
+  
+  .inputbox {
+    background: var(--neutral-300);
+    border: 2px dashed var(--neutral-500);
+    border-radius: 5px;
+    height: 7rem;
+    position: relative;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  :root:has(input[type="file"].empty) {
+    .inputbox {
+      border: 2px dashed red;
+    }
+  }
+  
+  .custom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    color: rgba(255, 255, 255, 0.5);
+    scale: 1.15;
+  
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  
+  input[type="file"] {
+    opacity: 0;
+    position: relative;
+    height: 100%;
+    z-index: -2;
+  }
+  
+  input {
+    width: 100%;
+    font-size: 1.15em;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+  
+    backdrop-filter: blur(10px);
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .info {
+    margin-top: 10px;
+    color: var(--neutral-300);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  :root:has(#email:invalid), :root:has(#email.empty) {
+    .e_mail {
+      display: flex;  
+    }
+  
+    #email {
+      outline: 1px red solid;
+    }
+  }
+  
+  :root:has(#gitusername:invalid), :root:has(#gitusername.empty) {
+    .e_gituser {
+      display: flex;  
+    }
+  
+    #gitusername {
+      outline: 1px red solid;
+    }
+  }
+  
+  :root:has(#fname:invalid), :root:has(#fname.empty) {
+    .e_fname {
+      display: flex;  
+    }
+  
+    #fname {
+      outline: 1px red solid;
+    }
+  }
+  
+  .genButton {
+    opacity: 1;
+    display: block;
+    margin-top: 1.5rem;
+    width: 100%;
+    border: none;
+    background-color: var(--orange-500);
+    border-radius: 5px;
+    font-size: 1.25em;
+    padding: 10px;
+  }
+  
+  .genButton:hover {
+    background-color: var(--orange-700);
+    cursor: pointer;
+  }
+  
+  .error {
+    color: red;
+    align-items: center;
+    display: none;
+    margin-top: 5px;
+    gap: 5px;
+  }
+  
+  .second {
+    display: none;
+  }
+  
+  .ticket {
+    width: fit-content;
+    margin: 5rem auto;
+    position: relative;
+    color: var(--neutral-0);
+  }
+  
+  span.name {
+    background-image: linear-gradient(45deg, hsl(7, 86%, 67%), hsl(0, 0%, 100%));
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .tinfo {
+    position: absolute;
+    padding: 20px;
+  }
+  
+  .top-left {
+    top: 0;
+    left: 0;
+  }
+  
+  .bottom-left {
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  
+    img.left {
+      height: calc(2.15em + 1.75em + 10px);
+      border-radius: 5px;
+    }
+  
+    .name {
+      font-size: 2.15em;
+    }
+  
+    .gituser {
+      font-size: 1.75em;
+    }
+  }
+  
+  .downinfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  span.fmail {
+    color: var(--orange-500);
+  }
+  
+  .date {
+    margin-left: calc(45px + 20px);
+  }
+  
+  .hori-flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  .c-conf {
+    font-weight: 700;
+    margin-left: 20px;
+    font-size: 45px;
+  }
+  
+  .avaph {
+    height: 30px;
+    aspect-ratio: 1;
+    z-index: -2;
+    position: relative;
+  }
+  
+  .img-buttons {
+    color: var(--neutral-0);
+    padding: 5px;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .img-buttons button {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 3;
+    position: relative;
+  }
+  
+  .img-buttons button:hover {
+    cursor: pointer;
+  }
+  
+  @media only screen and (max-width: 450px) {
+    body {
+      background-size: auto;
+    }
+  
+    .main {
+      font-size: 1.5em;
+      width: 80%;
+    }
+  
+    .sub {
+      width: 80%;
+    }
+  
+    .inputbox {
+      width: 80%;
+    }
+  
+    .form {
+      display: grid;
+      place-items: center;
+    }
+  
+    input, label, button.genButton {
+      width: 80%;
+    }
+  
+    input[type="file"] {
+      width: 100%;
+    }
+    
+    .ticket {
+      .tickern {
+        max-width: 100%;
+        height: auto;
+      }
+  
+      .hori-flex {
+        img {
+          height: 20px;
+          aspect-ratio: 1;
+        }
+      }
+  
+      .c-conf {
+        margin-left: 10px;
+        font-size: 20px;
+      }
+  
+      .date {
+        font-size: 15px;
+        margin-left: calc(20px + 10px);
+      }
+      
+      .bottom-left {
+        img.left {
+          height: 30px;
+        }
+  
+        .name {
+          font-size: 20px;
+        }
+  
+        .gituser {
+          font-size: 18px;
+        }
+      }
+    }
+  }
