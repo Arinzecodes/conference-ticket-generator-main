@@ -53,38 +53,46 @@ gitusername.addEventListener("input", () => {
     formValidation();
 });
 
+
+
+const isValidEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+};
+
 const formValidation = () => {
     let checkform = true; 
-    if (fname.value == "") {
+
+    if (fname.value.trim() === "") {
         checkform = false;
         fname.classList.add("empty");
     } else {
         fname.classList.remove("empty");
     }
 
-    if (email.value == "") {
+    if (email.value.trim() === "" || !isValidEmail(email.value.trim())) {
         checkform = false;
         email.classList.add("empty");
     } else {
         email.classList.remove("empty");
     }
 
-    if (gitusername.value == "") {
+    if (gitusername.value.trim() === "") {
         checkform = false;
         gitusername.classList.add("empty");
     } else {
         gitusername.classList.remove("empty");
     }
 
-    if (avatar.value == "") {
+    if (avatar.value === "") {
         checkform = false;
         avatar.classList.add("empty");
     } else {
         avatar.classList.remove("empty");
     }
 
-    return checkform
-}
+    return checkform;
+};
 
 var data = {};
 genButton.addEventListener("click", () => {
