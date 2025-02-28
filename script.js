@@ -11,12 +11,14 @@ const names = document.querySelectorAll(".name");
 const gitusers = document.querySelectorAll(".gituser");
 const rem = document.querySelector(".rem");
 const change = document.querySelector(".change");
+const dropArea = document.querySelector(".custom");
 
 let imgsrc = "";
 avatar.value = "";
-avatar.addEventListener("change", () => {
-    const file = avatar.files[0];
-    if (file.size < 5e6) {
+
+// Function to handle file selection
+const handleFile = (file) => {
+    if (file && file.type.startsWith("image/") && file.size < 5e6) {
         avatar.classList.remove("empty");
         avaph.src = URL.createObjectURL(file);
         avaph.style.display = "block";
@@ -26,7 +28,28 @@ avatar.addEventListener("change", () => {
         imbuttons.style.display = "flex";
     } else {
         avatar.classList.add("empty");
+        alert("Invalid file. Please upload a JPG or PNG under 5MB.");
     }
+};
+
+// File selection via input
+avatar.addEventListener("change", () => handleFile(avatar.files[0]));
+
+// Drag & Drop Functionality
+dropArea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropArea.classList.add("drag-over");
+});
+
+dropArea.addEventListener("dragleave", () => {
+    dropArea.classList.remove("drag-over");
+});
+
+dropArea.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropArea.classList.remove("drag-over");
+    const file = e.dataTransfer.files[0];
+    handleFile(file);
 });
 
 rem.addEventListener("click", () => {
@@ -37,31 +60,18 @@ rem.addEventListener("click", () => {
     imbuttons.style.display = "none";
 });
 
-change.addEventListener("click",  () => {
+change.addEventListener("click", () => {
     avatar.disabled = false;
 });
 
-fname.addEventListener("input", () => {
-    formValidation();
-});
-
-email.addEventListener("input", () => {
-    formValidation();
-});
-
-gitusername.addEventListener("input", () => {
-    formValidation();
-});
-
-
-
+// Email validation
 const isValidEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
 };
 
 const formValidation = () => {
-    let checkform = true; 
+    let checkform = true;
 
     if (fname.value.trim() === "") {
         checkform = false;
@@ -104,31 +114,12 @@ genButton.addEventListener("click", () => {
             imgsrc: imgsrc
         }
         
-        const leftimg = document.querySelectorAll(".left");
-        leftimg.forEach(img => {
-            img.src = data.imgsrc;
-        });
-
-        gitusers.forEach(gituser => {
-            gituser.textContent = data.gitUN;
-        });
-    
-        fmail.forEach(fmail => {
-            fmail.textContent = data.email;
-        });
-    
-        names.forEach(name => {
-            name.textContent = data.name;
-        });
-    
-        const firstEles = document.querySelectorAll(".first");
-        firstEles.forEach(ele => {
-            ele.style.display = "none";
-        });
-    
-        const secondEles = document.querySelectorAll(".second");
-        secondEles.forEach(ele => {
-            ele.style.display = "block";
-        });
+        document.querySelectorAll(".left").forEach(img => img.src = data.imgsrc);
+        gitusers.forEach(gituser => gituser.textContent = data.gitUN);
+        fmail.forEach(fmail => fmail.textContent = data.email);
+        names.forEach(name => name.textContent = data.name);
+        
+        document.querySelectorAll(".first").forEach(ele => ele.style.display = "none");
+        document.querySelectorAll(".second").forEach(ele => ele.style.display = "block");
     }
 });
